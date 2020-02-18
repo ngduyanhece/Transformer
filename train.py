@@ -95,7 +95,6 @@ def main():
     SRC, TRG = create_fields(opt)
     opt.train = create_dataset(opt, SRC, TRG)
     model = get_model(opt, len(SRC.vocab), len(TRG.vocab))
-    model = model.to('cuda')
     opt.optimizer = torch.optim.Adam(model.parameters(), lr=opt.lr, betas=(0.9, 0.98), eps=1e-9)
     if opt.SGDR == True:
         opt.sched = CosineWithRestarts(opt.optimizer, T_max=opt.train_len)

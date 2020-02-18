@@ -66,8 +66,8 @@ def get_model(opt, src_vocab, trg_vocab):
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p) 
     
-    #if opt.device == 0:
-        #model = model.cuda()
-    
+    if opt.device == 0:
+        print('move model to cuda')
+        model.cuda()
     return model
     
