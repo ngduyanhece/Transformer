@@ -34,14 +34,14 @@ def train_model(model, opt):
             trg_input = trg[:, :-1]
             trg_input = trg_input.cuda()
             src_mask, trg_mask = create_masks(src, trg_input, opt)
-            if(next(model.parameters()).is_cuda):
-                print('model is in GPU')
+            #if(next(model.parameters()).is_cuda):
+            #    print('model is in GPU')
             src = src.cuda()
-            if(src.is_cuda):
-                print('src is in GPU')
+            #if(src.is_cuda):
+            #    print('src is in GPU')
             src_mask = src_mask.cuda()
-            if(src_mask.is_cuda):
-                print('src_mask is in GPU')
+            #if(src_mask.is_cuda):
+            #    print('src_mask is in GPU')
             src = src.cuda()
             preds = model(src, trg_input, src_mask, trg_mask)
             ys = trg[:, 1:].contiguous().view(-1)
