@@ -30,6 +30,7 @@ def train_model(model, opt):
 
             src = batch.src.transpose(0,1)
             trg = batch.trg.transpose(0,1)
+            trg = trg.cuda()
             trg_input = trg[:, :-1]
             trg_input = trg_input.cuda()
             src_mask, trg_mask = create_masks(src, trg_input, opt)
