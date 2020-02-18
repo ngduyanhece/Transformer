@@ -32,6 +32,8 @@ def train_model(model, opt):
             trg = batch.trg.transpose(0,1)
             trg_input = trg[:, :-1]
             src_mask, trg_mask = create_masks(src, trg_input, opt)
+            if(next(model.parameters()).is_cuda):
+                print('model is in GPU')
             preds = model(src, trg_input, src_mask, trg_mask)
             ys = trg[:, 1:].contiguous().view(-1)
             opt.optimizer.zero_grad()
