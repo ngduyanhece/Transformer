@@ -37,6 +37,9 @@ def train_model(model, opt):
             src = src.cuda()
             if(src.is_cuda):
                 print('src is in GPU')
+            src_mask = src_mask.cuda()
+             if(src_mask.is_cuda):
+                print('src_mask is in GPU')
             src = src.cuda()
             preds = model(src, trg_input, src_mask, trg_mask)
             ys = trg[:, 1:].contiguous().view(-1)
